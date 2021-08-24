@@ -26,3 +26,8 @@ $(TARGET): $(OBJS)
 .cpp.o:
 	$(CXX) $(CXXFLAGS) -c $<
 
+.PHONY: build-mipsel
+build-mipsel:
+	docker build -f Dockerfile.mipsel -t infreqv6-builder-mipsel .
+	docker run -v $$(pwd):/host -w /host -it --rm infreqv6-builder-mipsel
+
